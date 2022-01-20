@@ -1,0 +1,6 @@
+spring:
+  #激活的配置
+  profiles:
+    active: dev
+  application:
+    name: app-common

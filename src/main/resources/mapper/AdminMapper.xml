@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wh.lawliet.mapper.admin.AdminMapper" >
+
+    <resultMap id="BaseResultMap" type="com.wh.lawliet.entity.Admin">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="admin_name" property="adminName" jdbcType="VARCHAR"/>
+        <result column="admin_password" property="adminPassword" jdbcType="VARCHAR"/>
+        <result column="admin_account" property="adminAccount" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+    <sql id="Base_Column_List">
+        id, admin_name, admin_password, admin_account, create_time
+    </sql>
+    
+    <insert id="addAdmin" parameterType="com.wh.lawliet.entity.Admin">
+        insert into common_admin (admin_name, admin_password, admin_account, create_time)
+        value (#{adminName, jdbcType=VARCHAR}, #{adminPassword, jdbcType=VARCHAR}, #{adminAccount, jdbcType=VARCHAR}, #{createTime, jdbcType=TIMESTAMP})
+    </insert>
+
+    <insert id="threadAddAdmin" parameterType="com.wh.lawliet.entity.Admin">
+        insert into common_admin (admin_name, admin_password, admin_account, create_time)
+        value (#{adminName, jdbcType=VARCHAR}, #{adminPassword, jdbcType=VARCHAR}, #{adminAccount, jdbcType=VARCHAR}, #{createTime, jdbcType=TIMESTAMP})
+    </insert>
+    <select id="getListAdmin" resultType="com.wh.lawliet.entity.Admin">
+        select * from common_admin;
+    </select>
+    <select id="selectAdminByAdminName" resultMap="BaseResultMap"
+    parameterType="String">
+        select <include refid="Base_Column_List"/>
+        from common_admin
+        <where>
+            <if test="adminName != null">
+                admin_name = #{adminName}
+            </if>
+        </where>
+    </select>
+</mapper>

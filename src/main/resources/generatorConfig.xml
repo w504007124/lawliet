@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--  <properties resource="mybatis.properties" />
+         -->
+    <classPathEntry location="src\main\resources\mysql-connector-java-5.1.26-bin.jar" />
+    <context id="msqlTables" targetRuntime="MyBatis3">
+        <plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+        <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/commondemo?serverTimezone=GMT%2B8"
+                        driverClass="com.mysql.jdbc.Driver" password="1234" userId="root" >
+<!--        <jdbcConnection connectionURL="jdbc:mysql://localhost:3306/commondemo?serverTimezone=GMT%2B8"-->
+<!--                        driverClass="com.mysql.cj.jdbc.Driver" password="1234" userId="root" >-->
+            <property name="nullCatalogMeansCurrent" value="true"/>
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+<!--        实体位置-->
+        <javaModelGenerator targetPackage="com.wh.lawliet.entity" targetProject="src/main/java">
+<!--            enableSubPackages:是否让schema作为包的后缀-->
+            <property name="enableSubPackages" value="true"/>
+            <!-- 从数据库返回的值被清理前后的空格  -->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+        <!--        *mapper.xml文件位置-->
+        <sqlMapGenerator targetPackage="com.wh.lawliet.mapper" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+<!--        <sqlMapGenerator targetPackage="main.resources.mapper" targetProject="src">-->
+<!--            <property name="enableSubPackages" value="true"/>-->
+<!--        </sqlMapGenerator>-->
+        <!-- Mapper 接口文件的位置 -->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.wh.lawliet.mapper.admin" targetProject="src/main/java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+
+        <!--数据库表-->
+        <table tableName="fc_contract" domainObjectName="FcContract"
+               enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" selectByExampleQueryId="false" >
+<!--            <property name="useActualColumnNames" value="false"/>-->
+        </table>
+<!--        <table tableName="cos_course" domainObjectName="CosCourseEntity" -->
+<!--               enableCountByExample="false" enableUpdateByExample="false" -->
+<!--               enableDeleteByExample="false" enableSelectByExample="false" -->
+<!--               selectByExampleQueryId="false">-->
+<!--        </table>-->
+    </context>
+</generatorConfiguration>
